@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/core", "ultracite/react"],
+  "linter": {
+    "rules": {
+      "style": {
+        // React/Expo uses PascalCase for component files
+        "useFilenamingConvention": "off"
+      },
+      "performance": {
+        // Expo-router requires re-exporting ErrorBoundary
+        "noBarrelFile": "off",
+        // React namespace import is common pattern
+        "noNamespaceImport": "off"
+      },
+      "suspicious": {
+        // Tailwind uses @tailwind directives
+        "noUnknownAtRules": "off"
+      },
+      "security": {
+        // Needed for injecting CSS in HTML template
+        "noDangerouslySetInnerHtml": "off"
+      }
+    }
+  }
+}

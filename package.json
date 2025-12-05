@@ -6,9 +6,10 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "start": "expo start",
-    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" && prettier -c \"**/*.{js,jsx,ts,tsx,json}\"",
-    "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
-    "web": "expo start --web"
+    "lint": "bun x ultracite check",
+    "format": "bun x ultracite fix",
+    "web": "expo start --web",
+    "prepare": "husky"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
@@ -43,20 +44,20 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@biomejs/biome": "2.3.8",
     "@types/react": "~19.1.10",
-    "@typescript-eslint/eslint-plugin": "^7.7.0",
-    "@typescript-eslint/parser": "^7.7.0",
     "ajv": "^8.12.0",
-    "eslint": "^8.57.0",
-    "eslint-config-universe": "^12.0.1",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.11",
+    "husky": "^9.1.7",
+    "lefthook": "^2.0.8",
+    "lint-staged": "^16.2.7",
     "tailwindcss": "^3.4.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "ultracite": "6.3.9"
   },
-  "eslintConfig": {
-    "extends": "universe/native",
-    "root": true
-  },
-  "private": true
+  "private": true,
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
+      "bun x ultracite fix"
+    ]
+  }
 }

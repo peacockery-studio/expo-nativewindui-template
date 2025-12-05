@@ -1,20 +1,20 @@
-import '../global.css';
-import 'expo-dev-client';
-import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
-import { Icon } from '@roninoss/icons';
-import { Link, Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Pressable, View } from 'react-native';
+import "../global.css";
+import "expo-dev-client";
+import { ThemeProvider as NavThemeProvider } from "@react-navigation/native";
+import { Icon } from "@roninoss/icons";
+import { Link, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { Pressable, View } from "react-native";
 
-import { ThemeToggle } from '~/components/ThemeToggle';
-import { cn } from '~/lib/cn';
-import { useColorScheme, useInitialAndroidBarSync } from '~/lib/useColorScheme';
-import { NAV_THEME } from '~/theme';
+import { ThemeToggle } from "~/components/ThemeToggle";
+import { cn } from "~/lib/cn";
+import { useColorScheme, useInitialAndroidBarSync } from "~/lib/useColorScheme";
+import { NAV_THEME } from "~/theme";
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
-} from 'expo-router';
+} from "expo-router";
 
 export default function RootLayout() {
   useInitialAndroidBarSync();
@@ -23,8 +23,8 @@ export default function RootLayout() {
   return (
     <>
       <StatusBar
-        key={`root-status-bar-${isDarkColorScheme ? 'light' : 'dark'}`}
-        style={isDarkColorScheme ? 'light' : 'dark'}
+        key={`root-status-bar-${isDarkColorScheme ? "light" : "dark"}`}
+        style={isDarkColorScheme ? "light" : "dark"}
       />
       {/* WRAP YOUR APP WITH ANY ADDITIONAL PROVIDERS HERE */}
       {/* <ExampleProvider> */}
@@ -42,23 +42,23 @@ export default function RootLayout() {
 }
 
 const SCREEN_OPTIONS = {
-  animation: 'ios_from_right', // for android
+  animation: "ios_from_right", // for android
 } as const;
 
 const INDEX_OPTIONS = {
   headerLargeTitle: true,
-  title: 'NativeWindUI',
+  title: "NativeWindUI",
   headerRight: () => <SettingsIcon />,
 } as const;
 
 function SettingsIcon() {
   const { colors } = useColorScheme();
   return (
-    <Link href="/modal" asChild>
+    <Link asChild href="/modal">
       <Pressable className="opacity-80">
         {({ pressed }) => (
-          <View className={cn(pressed ? 'opacity-50' : 'opacity-90')}>
-            <Icon name="cog-outline" color={colors.foreground} />
+          <View className={cn(pressed ? "opacity-50" : "opacity-90")}>
+            <Icon color={colors.foreground} name="cog-outline" />
           </View>
         )}
       </Pressable>
@@ -67,8 +67,8 @@ function SettingsIcon() {
 }
 
 const MODAL_OPTIONS = {
-  presentation: 'modal',
-  animation: 'fade_from_bottom', // for android
-  title: 'Settings',
+  presentation: "modal",
+  animation: "fade_from_bottom", // for android
+  title: "Settings",
   headerRight: () => <ThemeToggle />,
 } as const;
